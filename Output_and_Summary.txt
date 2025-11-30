@@ -1,0 +1,52 @@
+
+-------------------------------------------------------------------------
+                                Output
+-------------------------------------------------------------------------
+
+Test: Rand 200x200, shape: (200, 200)
+  Method: CGS, Time: 0.145634s, Accuracy: 4.76e-14, Orthogonality: 1.08e-11
+  Method: MGS, Time: 0.181612s, Accuracy: 4.75e-14, Orthogonality: 1.99e-13
+  Method: HH, Time: 0.549296s, Accuracy: 2.20e-13, Orthogonality: 6.58e-14
+  Method: Givens, Time: 18.785155s, Accuracy: 2.49e-13, Orthogonality: 3.09e-14
+
+Test: Dep 200x20, shape: (200, 20)
+  Method: CGS, Time: 0.001156s, Accuracy: 1.01e-14, Orthogonality: 2.35e-10
+  Method: MGS, Time: 0.001206s, Accuracy: 9.98e-15, Orthogonality: 1.66e-10
+  Method: HH, Time: 0.022638s, Accuracy: 8.29e-14, Orthogonality: 2.80e-14
+  Method: Givens, Time: 2.331926s, Accuracy: 6.05e-14, Orthogonality: 1.40e-14
+
+Test: Tall 200x10, shape: (200, 10)
+  Method: CGS, Time: 0.000374s, Accuracy: 2.65e-15, Orthogonality: 3.12e-15
+  Method: MGS, Time: 0.000466s, Accuracy: 2.76e-15, Orthogonality: 1.75e-15
+  Method: HH, Time: 0.009725s, Accuracy: 1.91e-14, Orthogonality: 2.11e-14
+  Method: Givens, Time: 1.366416s, Accuracy: 1.73e-14, Orthogonality: 1.02e-14
+
+Test: Wide 10x200, shape: (10, 200)
+  Method: CGS, Time: 0.093653s, Accuracy: 5.20e-13, Orthogonality: 1.86e+02
+  Method: MGS, Time: 0.011818s, Accuracy: 2.56e-14, Orthogonality: 1.38e+01
+  Method: HH, Time: 0.000591s, Accuracy: 1.01e-14, Orthogonality: 1.51e-15
+  Method: Givens, Time: 0.000978s, Accuracy: 1.24e-14, Orthogonality: 1.41e-15
+
+, Orthogonality: 2.19e-15
+
+Test: Sparse 200x200, shape: (200, 200)
+  Method: CGS, Time: 0.105873s, Accuracy: 1.82e-15, Orthogonality: 1.45e-05
+  Method: MGS, Time: 0.129394s, Accuracy: 1.83e-15, Orthogonality: 1.21e-13
+  Method: HH, Time: 0.347797s, Accuracy: 9.27e-15, Orthogonality: 8.68e-15
+  Method: Givens, Time: 0.585659s, Accuracy: 1.07e-14, Orthogonality: 5.87e-15
+
+
+-------------------------------------------------------------------------
+                                Summary
+-------------------------------------------------------------------------
+
+The best method from the testing was the Householder QR since it was overall the most consistent
+and had the highest numerical stability and accuracy across all matrix types.
+
+Matrix Type	                    CGS	                    MGS	            HH                                  Givens
+Random Dense	            |   poor orthogonality	|   better      |	best                            |   too slow
+Nearly Dependent            |   unstable            |   unstable	|   best stability                  |	stable but slow
+Tall Skinny	                |   good                |   good	    |   slightly worse orthogonality    |	too slow
+Wide	                    |   fails badly	        |   large errors|	flawless	                    |   good
+Hilbert (ill-conditioned)   |   terrible            |   bad         |   near-perfect                    |   great
+Sparse	                    |   acceptable          |   good        |   very accurate                   |   good but slower
